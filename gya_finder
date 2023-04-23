@@ -1,3 +1,5 @@
+repeat wait() until game:isLoaded() 
+
 function server_hop()
     local servers = {}
     for _, server in pairs(game:GetService("HttpService"):JSONDecode(game:HttpGetAsync("https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100")).data) do
@@ -18,7 +20,7 @@ function check_gya()
 
         Players.LocalPlayer.OnTeleport:Connect(function(State)
             if State == Enum.TeleportState.Started then
-                queueteleport("repeat wait() until game:isLoaded() loadstring(game:HttpGet('https://raw.githubusercontent.com/KoaLa-19/DownFvll-Ro-Ghoul/main/gya_finder'))()")
+                queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/KoaLa-19/DownFvll-Ro-Ghoul/main/gya_finder'))()")
             end
         end)
     else
