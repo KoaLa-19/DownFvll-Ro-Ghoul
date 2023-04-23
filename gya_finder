@@ -20,9 +20,15 @@ function check_gya()
             queue_on_teleport("repeat wait() until game:isLoaded() and KRNL_LOADED loadstring(game:HttpGet('https://raw.githubusercontent.com/KoaLa-19/DownFvll-Ro-Ghoul/main/gya_finder'))()")
         end)
     else
+        health = 0
+        for _,v in game:GetService("Workspace").NPCSpawns.GyakusatsuSpawn:GetDescendants() do
+            if v:IsA("Humanoid") then
+                health += v.Health
+            end
+        end
         game.StarterGui:SetCore("SendNotification", {
-            Title = "[+] Gya Found";
-            Text = "[+] iLx#1337";
+            Title = "Gya Found!";
+            Text = "Gya Heath : %"..tostring(math.ceil(health/4020));
             Duration = 5
         })
     end
