@@ -18,7 +18,7 @@ function check_gya()
     if not game:GetService("Workspace").NPCSpawns.GyakusatsuSpawn:FindFirstChild("Gyakusatsu") then
         server_hop()
 
-        Players.LocalPlayer.OnTeleport:Connect(function(State)
+        game.Players.LocalPlayer.OnTeleport:Connect(function(State)
             if State == Enum.TeleportState.Started then
                 queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/KoaLa-19/DownFvll-Ro-Ghoul/main/gya_finder'))()")
             end
@@ -35,9 +35,3 @@ end
 check_gya()
 
 
-
-game.UserInputService.InputBegan:Connect(function(Input)
-    if Input.KeyCode == Enum.KeyCode.F7 then
-        check_gya()
-    end
-end)
