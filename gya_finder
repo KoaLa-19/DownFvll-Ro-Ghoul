@@ -17,9 +17,7 @@ function check_gya()
         server_hop()
 
         game.Players.LocalPlayer.OnTeleport:Connect(function(State)
-            if State == Enum.TeleportState.Started then
-                queue_on_teleport("repeat wait() until game:isLoaded() and KRNL_LOADED loadstring(game:HttpGet('https://raw.githubusercontent.com/KoaLa-19/DownFvll-Ro-Ghoul/main/gya_finder'))()")
-            end
+            queue_on_teleport("repeat wait() until game:isLoaded() and KRNL_LOADED loadstring(game:HttpGet('https://raw.githubusercontent.com/KoaLa-19/DownFvll-Ro-Ghoul/main/gya_finder'))()")
         end)
     else
         game.StarterGui:SetCore("SendNotification", {
