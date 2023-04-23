@@ -1,1 +1,41 @@
+function server_hop()
+    local servers = {}
+    for _, server in pairs(game:GetService("HttpService"):JSONDecode(game:HttpGetAsync("https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100")).data) do
+       if type(server) == "table" and server.id ~= game.JobId then
+            table.insert(servers, server.id)
+        end
+    end
+    if #servers > 0 then
+        game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, servers[math.random(1, #servers)])
+    else
+        print("Couldn't find a server.")
+    end
+end
 
+function check_gya()
+    if not game:GetService("Workspace").NPCSpawns.GyakusatsuSpawn:FindFirstChild("Gyakusatsu") then
+        server_hop()
+
+        Players.LocalPlayer.OnTeleport:Connect(function(State)
+            if State == Enum.TeleportState.Started then
+                queueteleport("repeat wait() until game:isLoaded() loadstring(game:HttpGet('https://raw.githubusercontent.com/KoaLa-19/DownFvll-Ro-Ghoul/main/gya_finder'))()")
+            end
+        end)
+    else
+        game.StarterGui:SetCore("SendNotification", {
+            Title = "[+] Gya Found";
+            Text = "[+] iLx#1337";
+            Duration = 5
+        })
+    end
+end
+
+check_gya()
+
+
+
+game.UserInputService.InputBegan:Connect(function(Input)
+    if Input.KeyCode == Enum.KeyCode.F7 then
+        check_gya()
+    end
+end)
